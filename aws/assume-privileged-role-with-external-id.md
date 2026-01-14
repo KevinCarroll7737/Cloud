@@ -1,6 +1,4 @@
-## LAB URL:
-
-https://pwnedlabs.io/labs/assume-privileged-role-with-external-id
+## Attack Path
 
 <img width="1920" height="1985" alt="image" src="https://github.com/user-attachments/assets/96c56a8d-2740-42a8-9144-3b0adc98ec13" />
 
@@ -74,3 +72,7 @@ aws sts get-caller-identity
 
 * Store configuration files outside of the world-readable web root.
 * When creating test policies, use IAM users and roles that are dedicated to testing and do not already serve an operational or business purpose.
+
+## Lab URL:
+
+https://pwnedlabs.io/labs/assume-privileged-role-with-external-id
