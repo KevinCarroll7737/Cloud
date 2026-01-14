@@ -1,7 +1,9 @@
 ## LAB URL:
+
 https://pwnedlabs.io/labs/assume-privileged-role-with-external-id
 
 ## Solution
+
 Web App
 AWS Config file (/config.json)
 S3 credentials (AccessKeyID + secretAccessKey + Region)
