@@ -2,6 +2,8 @@
 
 https://pwnedlabs.io/labs/assume-privileged-role-with-external-id
 
+<img width="1920" height="1985" alt="image" src="https://github.com/user-attachments/assets/96c56a8d-2740-42a8-9144-3b0adc98ec13" />
+
 ## Solution
 
 Web App
