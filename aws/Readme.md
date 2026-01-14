@@ -10,7 +10,7 @@
 ## AWS CLI Commands
 
 ```
-aws configure	              # Run as well aws-enumerator cred (to make sure you update the tool)
+aws configure	            # Run as well aws-enumerator cred (to make sure you update the tool)
 aws sts get-caller-identity # whoami for aws
 ```
 
@@ -19,7 +19,7 @@ aws iam list-attached-user-policies --user-name <USERNAME>	# List all policies
 ```
 
 ```
-aws iam get-policy --policy-arn <POLICY_ARN>						# Get Policy VersionId
+aws iam get-policy --policy-arn <POLICY_ARN>											# Get Policy VersionId
 aws iam get-policy-version --policy-arn <PolicyArn> --version-id <DefaultVersionId> 	# Get Policy Document
 ```
 
@@ -52,7 +52,7 @@ aws sts assume-role --role-arn <ROLE_ARN> --role-session-name <ROLE_NAME> --exte
 ```
 
 ```
-aws s3 ls <BUCKET_NAME>     # ls s3 bucket
+aws s3 ls <BUCKET_NAME>     				# ls s3 bucket
 aws s3 cp s3://<BUCKET_NAME>/<FILE_NAME> -	# cp s3 bucket file
 ```
 
