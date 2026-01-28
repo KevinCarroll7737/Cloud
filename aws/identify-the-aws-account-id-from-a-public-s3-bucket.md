@@ -1,4 +1,4 @@
-Identify the AWS Account ID from a Public S3 Bucket
+Attack Path
 ===
 
 <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/29857ab1-16a3-48c4-967c-30eca926d1df" />
@@ -54,7 +54,7 @@ Configuring AWS Account
 }
 ```
 
-Attack
+Solution
 ---
 1. Find a S3 bucket name
 2. Try to brute-force the AWS AccountID of the S3 bucket
@@ -70,3 +70,13 @@ curl -I https://<bucket_name>.s3.amazonaws.com
 ```
 AWS Console > EC2 > Snapshot > Public Snapshot: Owner = <Brute_forced_AccountID>
 ```
+
+Defense
+---
+
+AWS account IDs can be used to search for EC2 public snapshots. It is recommended to avoid exposing EC2 snapshots publicly.
+
+Lab URL
+---
+
+https://pwnedlabs.io/labs/identify-the-aws-account-id-from-a-public-s3-bucket
